@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plant Disease Detection</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            background: #f4f6f8;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .card{
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 420px;
+            margin: auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h1{
+            color: #2e7d32;
+        }
+
+        button{
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover{
+            background: #1b5e20;
+        }
+
+        img{
+            margin-top: 15px;
+            max-width: 320px;
+            border-radius: 8px;
+        }
+
+        .result{
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #d32f2f;
+        }
+
+        .info{
+            margin-top: 8px;
+            color: #1565c0;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>🌱 Plant Disease Detection</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" required>
+        <br><br>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+        <div class="result">Prediction: {{ prediction }}</div>
+        <div class="info">Confidence: {{ confidence }}%</div>
+        <div class="info">Treatment: {{ treatment }}</div>
+        <img src="{{ url_for('static', filename=filename) }}">
+    {% endif %}
+</div>
+
+</body>
+</html>
